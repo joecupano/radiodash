@@ -17,7 +17,7 @@ library
 
 ## Introduction
 
-This project started life as webUI development for another project I am working on, HASviolet.
+This project started life as webUI development for another project I am working on, [HASviolet] (https://github.com/hudsonvalleydigitalnetwork/hasviolet "HASviolet").
 In researching what approach I should take with front-end development for that project, I kept
 coming back to more having to enlist layers of programming and frameworks I thought were
 unnecessary overhead for the simplistic functionality the project would need.
@@ -46,7 +46,7 @@ installer installed, add the Tornado WebFramework Library
    ```
 Next clone the repo into your user directory
    ```
-   pi@pi:~$ git clone https://github.com/joecupano/radioDASH
+   pi@pi:~$ git clone https://github.com/joecupano/radiodash
    ```
 
 ## High-Level Overview
