@@ -53,15 +53,15 @@ Next clone the repo into your user directory
 
 After the repo has been cleaned, you will have the following files:
 
-'''
-radioDASH_INDEX.html
-radioDASH_ws-server.py
-     cfg > radioDASH.json
-     css > radioDASH_INDEX.css
-      js > radioDASH_index.js
-    msgs > radioDASH.msgs
-  static > favicon.ico
-'''
+   ```
+   radioDASH_INDEX.html
+   radioDASH_ws-server.py
+        cfg > radioDASH.json
+      css > radioDASH_INDEX.css
+         js > radioDASH_index.js
+       msgs > radioDASH.msgs
+   static > favicon.ico
+   ```
 
 Out of these files, the core functionality is with radioDASH-ws_server.py running and serving
 radioDASH.html (HTML), radioDASH.css (CSS), radioDASH.js (JS) rom the directories they are
@@ -87,13 +87,6 @@ The HTML and CSS files are broken down into sections referencing the containers 
 This is the most complex container when it comes to functionality required give it includes
 as tuner display window. Much of the code developed came from review of a number of
 calculator web apps since they had the closest functionality for screen updating.
-
-and worthy of havign its own section describing it.
-
-e most complex layout coding is with the Tuner-container since the numeric
-pad is you will see comments referencing code relative to each section.
-
-Tuner-container is probably the most complex
 
 ### Dashboard Functionality (JS)
 
