@@ -54,13 +54,13 @@ Next clone the repo into your user directory
 After the repo has been cleaned, you will have the following files:
 
    ```
-   radioDASH_INDEX.html
+       radioDASH_INDEX.html
    radioDASH_ws-server.py
-        cfg > radioDASH.json
-      css > radioDASH_INDEX.css
-         js > radioDASH_index.js
-       msgs > radioDASH.msgs
-   static > favicon.ico
+                   cfg > radioDASH.json
+                   css > radioDASH_INDEX.css
+                    js > radioDASH_index.js
+                  msgs > radioDASH.msgs
+                static > favicon.ico
    ```
 
 Out of these files, the core functionality is with radioDASH-ws_server.py running and serving
