@@ -1,0 +1,56 @@
+{
+   "DEFAULT": {
+      "radio": "DUMMYRF",
+      "oled": "128x32",
+      "node_address": 1,
+      "frequency": 911250,
+      "txpwr": 5,
+      "mycall": "NOCALL",
+      "myssid": "00",
+      "mybeacon": "quack quack",
+      "dstcall": "BEACON",
+      "dstssid": "99"
+   },
+   "CURRENT": {
+      "radio": "RFM95",
+      "oled": "128x32",
+      "node_address": 1,
+      "frequency": 911250,
+      "txpwr": 5,
+      "mycall": "NOCALL",
+      "myssid": "99",
+      "mybeacon": "quack quack",
+      "dstcall": "BEACON",
+      "dstssid": "99"
+   },
+   "RFM95": {
+      "gpio_rfm_cs": 1,
+      "gpio_rfm_irq": 22,
+      "node_address": 1,
+      "modemcfg": "Bw31_25Cr48Sf512",
+      "bandwidth": 31.25,
+      "spreadfactor": 512,
+      "codingrate": 48,
+      "rfm_crc": 1
+   },
+   "SX1262": {
+      "gpio_rfm_cs": 1,
+      "gpio_rfm_irq": 22,
+      "node_address": 1,
+      "modemcfg": "Bw31_25Cr48Sf512",
+      "bandwidth": 31.25,
+      "spreadfactor": 512,
+      "codingrate": 48,
+      "rfm_crc": 1
+   },
+   "DUMMYRF": {
+      "gpio_rfm_cs": 1,
+      "gpio_rfm_irq": 22,
+      "node_address": 1,
+      "modemcfg": "Bw31_25Cr48Sf512",
+      "bandwidth": 31.25,
+      "spreadfactor": 512,
+      "codingrate": 48,
+      "rfm_crc": 1
+   }
+}
