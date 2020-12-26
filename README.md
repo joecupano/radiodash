@@ -6,7 +6,7 @@
 
 # Amateur Radio Web Framework
 
-![alt-test](https://github.com/joecupano/radiodash/blob/master/hardware/radio-DASH-example.png)
+![alt-test](https://github.com/joecupano/radiodash/blob/main/radio-DASH-example.png)
 
 ## Overview
 
