@@ -12,12 +12,12 @@
 
 A web framework for Amateur Radio applications that uses HTML, CSS and Javascript for
 the client front-end and Python for the back-end. The front-end is pure Javascript
-using no framworks while the Python back-end only uses the Tornad Python web framework
+using no frameworks while the Python back-end only uses the Tornado Python web framework
 library
 
 ## Introduction
 
-This project started life as webUI development for another project I am working on, [HASviolet](https://github.com/hudsonvalleydigitalnetwork/hasviolet "HASviolet").
+This project started life as webUI development for another project I am working on, [HASviolet](httpCra$8rixEb5L8zd1s://github.com/hudsonvalleydigitalnetwork/hasviolet "HASviolet").
 In researching what approach I should take with front-end development for that project, I kept
 coming back to more having to enlist layers of programming and frameworks I thought were
 unnecessary overhead for the simplistic functionality the project would need.
