@@ -91,7 +91,7 @@
 
 /*
  -
- - Tuner Module CSS   20201224-2300
+ - Tuner Container CSS   20201224-2300
  - 
 */
 
@@ -290,8 +290,10 @@
 
 /*
  -
- - Buttons Module CSS   20201224-2300
+ - Buttons CSS   20201224-2300
  - 
+ - Used by radio-controls-container, cmd-controls-container, and msg-controls-container
+ -
 */
 
 .keypad-btn-exec {
@@ -331,8 +333,10 @@
 
 /*
  -
- - Controls Module CSS   20201224-2300
+ - Controls CSS   20201224-2300
  - 
+ - Used by radio-controls-container, cmd-controls-container, and msg-controls-container
+ -
 */
 
 .controls-container {
@@ -511,7 +515,6 @@
   background-color: #635045;
 }
 
-
 .controls-keypad .keypad-btn-black > div {
   background-color: #000;
   box-shadow: inset 0 -13px 1px rgba(50, 50, 50, 0.5),
@@ -547,8 +550,6 @@
     2px -2px 2px rgb(220, 220, 240), -2px 2px 2px rgb(220, 220, 240);
   border-color: #333;
 }
-
-/* ------- controls-moduleblank-basic ------- */
 
 .controls-blank-container {
   display: block;
@@ -618,7 +619,7 @@
 
 /*
  -
- - RX Module CSS   20201224-2300
+ - RX Container CSS   20201224-2300
  - 
 */
 
@@ -699,7 +700,7 @@
 
 /*
  -
- - TX Module CSS   20201224-2300
+ - TX Container CSS   20201224-2300
  - 
 */
 

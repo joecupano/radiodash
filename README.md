@@ -108,6 +108,14 @@ any change in timestamp. If detected it will send a message via websockets the c
 file to the client. The JS code running on the browser will see this and copy the message
 to the RX window in the browser.
 
+Future update will include a PIPE for "radio applications" running on the machine
+to communicate with the Webscoket server.
+
+## More details
+
+Within each folder are additional READMEs for further details on those files and
+how they interact.
+
 ## License
 
 Distributed under GPLv2 License. See `LICENSE` for more information.
