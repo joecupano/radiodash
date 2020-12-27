@@ -57,6 +57,8 @@ After the repo has been cleaned, you will have the following files:
        radioDASH_INDEX.html
    radioDASH_ws-server.py
                    cfg > radioDASH.json
+                         radioDASH.crt
+                         radioDASH.key
                    css > radioDASH_INDEX.css
                     js > radioDASH_index.js
                   msgs > radioDASH.msgs
@@ -64,9 +66,16 @@ After the repo has been cleaned, you will have the following files:
    ```
 
 Out of these files, the core functionality is with radioDASH-ws_server.py running and serving
-radioDASH.html (HTML), radioDASH.css (CSS), radioDASH.js (JS) rom the directories they are
-stored. Browsers always look for a favicon hence the inclusion of static folder with a
-favicon.ico so there are no unecessary errors to be distracted with.
+radioDASH.html (HTML), radioDASH.css (CSS), radioDASH.js (JS) from the directories they are
+stored with. 
+
+The framework uses SSLv3/TLS only. A untrusted self-signed certificate and server key are
+provided (radioDASH.crt and radioDASH.key) but it is HIGHLY RECOMMENDED these be replaced with
+your own trusted credentials. Know until you have done that you will see (harmless) iostream
+errors from STDOUT from the websocket server.
+
+Browsers always look for a favicon hence the inclusion of favicon.ico in the static folder so
+there are no unecessary errors to be distracted with.
 
 ### Dashboard Layout (HTML and CSS)
 
@@ -127,5 +136,4 @@ I want to thank the following people for their inspiration and advice during thi
 - Steve Bossert (K2GOG) of [Hudson Valley Digital Network (HVDN)](https://hvdn.org "Hudson Valley Digital Network (HVDN)")
 - Mike Kershaw of [Kismet](https://www.kismetwireless.net/ "Kismet")
 - Sean Swehla (KD2HGY) of [SquidWrench](http://squidwrench.org/ "SquidWrench")
-
 

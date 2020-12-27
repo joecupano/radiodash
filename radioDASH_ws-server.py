@@ -19,6 +19,7 @@
 import os
 import time
 import json
+import ssl
 import multiprocessing
 import tornado.httpserver
 import tornado.ioloop
@@ -153,7 +154,7 @@ def main():
     tornado.options.parse_command_line()
     app = tornado.web.Application(
         handlers=[
-            ('/ws', WebSocketHandler),
+            ('/wss', WebSocketHandler),
             ('/', IndexHandler),
             ('/css/(.*)', tornado.web.StaticFileHandler, {'path': 'css/'}),
             ('/js/(.*)', tornado.web.StaticFileHandler, {'path': 'js/'}),
@@ -162,7 +163,13 @@ def main():
             ('/(.*)', tornado.web.StaticFileHandler, {'path': 'static/'})
         ]
     )
-    httpServer = tornado.httpserver.HTTPServer(app)
+    httpServer = tornado.httpserver.HTTPServer(app,
+        ssl_options = {
+            "certfile": os.path.join("cfg/radioDASH.crt"),
+            "keyfile": os.path.join("cfg/radioDASH.key"),
+        }
+    )
+
     httpServer.listen(options.port)
     print (" ")
     print ("radioDASH started: listening on port:", options.port)

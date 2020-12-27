@@ -117,8 +117,8 @@ var previous_entry = "";
 var current_entry = "";
 var new_entry;
 var myHostname = location.hostname;
-var wsURI = "ws://" + myHostname + ":8000/ws";						//  TEST Websocket URI 
-var url = "http://" + myHostname + ":8000/cfg/radioDASH.json";		//  JSON file location
+var wsURI = "wss://" + myHostname + ":8000/wss";					//  TEST Websocket URI 
+var url = "https://" + myHostname + ":8000/cfg/radioDASH.json";		//  JSON file location
 var getHasJson = new XMLHttpRequest();								//  Holds JSON from Radio
 var setRadioCfg = new XMLHttpRequest();								//  Sends JSON to Radio
 
@@ -692,8 +692,8 @@ rxwinMSG('-');
 socket = new WebSocket(wsURI);
 
 socket.onopen = function(e) {
-  console.log("WS: [open] Connection established");
-  console.log("WS: Sending to server");
+  console.log("WSS: [open] Connection established");
+  console.log("WSS: Sending to server");
   socket.send("CONNECT:" + myHostname);
 };
 
@@ -701,22 +701,23 @@ socket.onmessage = function(event) {
 	var hasRXD = event.data.split(':');
 	if (hasRXD[0] == "RX") {
 		rxwinMSG("RX: " + hasRXD[1]);
-		console.log("WS: RX: " + hasRXD[1]);
+		console.log("WSS: RX: " + hasRXD[1]);
 	};
-	console.log(`WS: [message] Data received from server: ${event.data}`);
+	console.log(`WSS: [message] Data received from server: ${event.data}`);
 };
 
 socket.onclose = function(event) {
   if (event.wasClean) {
-    console.log(`WS: [close] Connection closed cleanly, code=${event.code} reason=${event.reason}`);
+    console.log(`WSS: [close] Connection closed cleanly, code=${event.code} reason=${event.reason}`);
   } else {
     // e.g. server process killed or network down
     // event.code is usually 1006 in this case
-    console.log('WS: [close] Connection died');
+    console.log('WSS: [close] Connection died');
   }
 };
 
 socket.onerror = function(error) {
-	document.getElementById('msgDISPLAYED').value = "WS:ERROR connecting to " + wsURI;
-	console.log(`WS: [error] ${error.message}`);
+	var rxWINerror = "WSS:ERROR connecting to " + wsURI;
+	rxwinMSG(rxWINerror);
+	console.log(`WSS: [error] ${error.message}`);
 };
