@@ -182,11 +182,11 @@ function btnRESET() {
 			myRadio = JSON.parse(getHasJson.responseText);
 			console.log("TUNER: btnRESET");
 		}
+		previous_operation = "RESET";
+		previous_entry = "";
+		current_entry = "";
+		updateTunerDisplay(myRadio.CURRENT.frequency);
 	}
-	previous_operation = "RESET";
-	previous_entry = "";
-	current_entry = "";
-	updateTunerDisplay(myRadio.CURRENT.frequency);
 }
 
 function btnCLR() {
@@ -587,62 +587,32 @@ function rxwinMSG(message) {
 
 function rxwinMSGhelp() {
 	rxDisplay [26] = "-"
-	rxDisplay [25] = "- radioDASH WebUI Instructions"
+	rxDisplay [25] = "................ radioDASH WebUI Instructions .............."
 	rxDisplay [24] = "-"
-	rxDisplay [23] = "- KEYPAD"
+	rxDisplay [23] = "......... KEYPAD .......... .......... RF CONTROLS ........."
 	rxDisplay [22] = "-"
-	rxDisplay [21] = "- FUN = Disabled"
-  	rxDisplay [20] = "- RST = Reset Keypad"
-  	rxDisplay [19] = "- CLR = Clear Display"
-  	rxDisplay [18] = "- ENT = Update Radio Freq"
+	rxDisplay [21] = "- FUN = Disabled ---------- -- RADIO = Radio on/off (toggle) "
+  	rxDisplay [20] = "- RST = Reset Keypad ------ ----- PA = RF Power (LOW, MED, HIGH) "
+  	rxDisplay [19] = "- CLR = Clear Display ----- --- MODE = LORA, FSK, AFSK, etc"
+  	rxDisplay [18] = "- ENT = Update Radio Freq - ---- BCN = Beacon msg on/off (toggle)"
 	rxDisplay [17] = "-"
-	rxDisplay [16] = "- RF CONTROLS"
+	rxDisplay [16] = "..................... MESSAGE CONTROLS ....................."
 	rxDisplay [15] = "-"
-  	rxDisplay [14] = "- RADIO = Radio on/off (toggle) "
-  	rxDisplay [13] = "- PA = RF Power (LOW, MED, HIGH)"
-  	rxDisplay [12] = "- MODE = LORA, FSK, AFSK, AX25, CW (LORa only works) "
-  	rxDisplay [11] = "- BCN = Beacon msg on/off (toggle)"
-  	rxDisplay [10] = "-"
-	rxDisplay [9] = "- MESSAGE CONTROLS"
+  	rxDisplay [14] = "- CALL = myCall Macro ----- ---- LOG = Log on/off (toggle)"
+  	rxDisplay [13] = "- DEST = dstCall Macro ---- --- RCLR = Clear RX Window"
+  	rxDisplay [12] = "- HEAD = Message Header---- --- MCLR = TX window clear"
+  	rxDisplay [11] = "- HELP = This screen ------ --- SEND = Send whats in TX Window"
+  	rxDisplay [10] = "- "
+	rxDisplay [9] = ".................... TX WINDOW COMMANDS ...................."
 	rxDisplay [8] = "-"	  
-  	rxDisplay [7] = "- CALL = myCall Macro "
-  	rxDisplay [6] = "- DEST = dstCall Macro"
-	rxDisplay [5] = "- HEAD = Message Header Macro"
-	rxDisplay [4] = "- HELP = This screen"
-	rxDisplay [3] = "- LOG = Logging on/off (toggle) "
-	rxDisplay [2] = "- RCLR = Clear RX Window "
-	rxDisplay [1] = "- MCLR = TX window clear"
-  	rxDisplay [0] = "- SEND = Send whats in TX Window"
-}
-
-function rxwinMSGhelp111() {
-	rxDisplay [26] = "-"
-	rxDisplay [25] = "-                radioDASH WebUI Instructions"
-	rxDisplay [24] = "-"
-	rxDisplay [23] = "-       KEYPAD                        RF CONTROLS"
-	rxDisplay [22] = "-"
-	rxDisplay [21] = "-  FUN = Disabled            RADIO = Radio on/off (toggle) "
-  	rxDisplay [20] = "-  RST = Reset Keypad           PA = RF Power (LOW, MED, HIGH) "
-  	rxDisplay [19] = "-  CLR = Clear Display        MODE = LORA, FSK, etc LORa only) "
-  	rxDisplay [18] = "-  ENT = Update Radio Freq     BCN = Beacon msg on/off (toggle)"
-	rxDisplay [17] = "-"
-	rxDisplay [16] = "-                      MESSAGE CONTROLS"
-	rxDisplay [15] = "-"
-  	rxDisplay [14] = "-  LOG = Logging on/off (toggle)   HEAD = Message Header Macro"
-  	rxDisplay [13] = "-  RCLR = Clear RX Window          MESG = Beacon Msg Macro"
-  	rxDisplay [12] = "-  CALL = myCall Macro             MCLR = TX window clear"
-  	rxDisplay [11] = "-  DEST = dstCall Macro            SEND = Send whats in TX Window"
-  	rxDisplay [10] = "-"
-	rxDisplay [9] = "-                       TX WINDOW COMMANDS"
-	rxDisplay [8] = "-"	  
-  	rxDisplay [7] = "-  .myCALL NOCALL-00     Changes CALL macro to hold NOCALL-00"
-  	rxDisplay [6] = "-  .dstCALL BL0B-50      Changes DEST macro to hold BL0B-50"
-  	rxDisplay [5] = "-  .macro1 blah blah     Changes M1 button to hold blah blah"
+  	rxDisplay [7] = "- .myCALL NOCALL-00     Changes CALL macro to hold NOCALL-00"
+  	rxDisplay [6] = "- .dstCALL BL0B-50      Changes DEST macro to hold BL0B-50"
+  	rxDisplay [5] = "- .macro1 blah blah     Changes M1 button to hold blah blah"
   	rxDisplay [4] = "-"
-	rxDisplay [3] = "-                       TO SEND A MESSAGE"
+	rxDisplay [3] = "..... TO SEND A MESSAGE"
 	rxDisplay [2] = "-"  
-  	rxDisplay [1] = "-  Type YourCall>DestCall|MESSAGE in TX window then click SEND"
-  	rxDisplay [0] = "-  Via Macro buttons click HEAD, MESG, then SEND<"
+  	rxDisplay [1] = "- Via Macro buttons click HEAD, M1, then SEND"
+  	rxDisplay [0] = "- Type YourCall>DestCall|MESSAGE in TX window then click SEND"
 }
 
 

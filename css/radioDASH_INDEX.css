@@ -97,7 +97,7 @@
 
 .tuner-container {
   display: block;
-  width: 240px;                                                                                                        /* only needed in Chrome extension */
+  width: 240px;
   height: 240px;
   padding: 16px 10px 18px;
   font: bold 15px/28px Arial, Helvetica, sans-serif;
@@ -115,13 +115,14 @@
   background: -ms-linear-gradient(top, #141414 45%, #282828 80%);                                                  /* IE10+ */
   background: linear-gradient(to bottom, #141414 45%, #282828 80%);                                                /* W3C */
 }
+
 .tuner-container:after {
   content: "";
   display: block;
   clear: both;
 }
 
-/* --------- display --------- */
+/* --------- tuner display --------- */
 
 .tuner-display {
   position: relative;
@@ -138,7 +139,7 @@
   white-space: nowrap;
   color: #333;
   cursor: default;
-  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.01);                                                                          /* for nicer/smoother rendering */
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.01);                                                                          /* for smoother rendering */
   background: #edefe0;                                                                                                /* Old browsers */
   background: -moz-linear-gradient(top, #edefe0 45%, #babea2 80%);                                                  /* FF3.6+ */
   background: -webkit-gradient(linear, left top, left bottom, color-stop(45%, #edefe0), color-stop(80%, #babea2));  /* Chrome,Safari4+ */
@@ -156,7 +157,7 @@
   right: 11px;
 }
 
-/* -------- keypad -------- */
+/* -------- tuner numpad -------- */
 
 .tuner-numpad {
   position: relative;
@@ -164,7 +165,7 @@
   width: 240px;
 }
 
-/* -------- keypad buttons -------- */
+/* -------- tuner buttons -------- */
 
 .tuner-numpad > div {
   margin: 5px 4px;
@@ -202,10 +203,12 @@
     inset 0 6px 6px rgba(255, 255, 255, 0.25);
   border: none;
 }
+
 .tuner-numpad > div > div:hover {
   text-shadow: 0px 0px 8px rgb(255, 230, 186), 0px 0px 22px rgb(255, 255, 255),
     0px -1px 0px rgba(0, 0, 0, 0.5);
 }
+
 .tuner-numpad .numpad-btn-exec {
   height: 68px;
   position: absolute;
@@ -213,9 +216,11 @@
   right: 0;
   background-color: #ea6811;
 }
+
 .numpad-down {
   padding-top: 40px;
 }
+
 .tuner-display-khzxy sup {
   padding-bottom: 4px;
   display: block;
@@ -223,20 +228,25 @@
   left: 14px;
   top: 6px;
 }
+
 .tuner-display-khzxy em {
   font-weight: normal;
   font-size: 16px;
   padding-right: 2px;
 }
+
 .tuner-numpad .numpad-btn-zero {
   width: 110px;
 }
+
 .tuner-numpad .numpad-btn-zero div {
   text-align: left;
 }
+
 .tuner-numpad .numpad-btn-zero span {
   padding-left: 22px;
 }
+
 .numpad-btn-blank {
   border-color: transparent;
   background: none;
@@ -244,9 +254,11 @@
   box-shadow: none;
   clear: right;
 }
+
 .tuner-numpad .numpad-btn-brown > div {
   background-color: #635045;
 }
+
 .tuner-numpad .numpad-btn-brown {
   background-color: #4b3c34;
 }
@@ -257,9 +269,11 @@
     inset 0 1px 1px rgba(255, 255, 255, 0.25),
     inset 0 8px 6px rgba(255, 255, 255, 0.2);
 }
+
 .tuner-numpad .numpad-btn-black {
   background-color: #181818;
 }
+
 .tuner-numpad .numpad-btn-orange > div {
   background-color: #ff7113;
   box-shadow: inset 0 -13px 1px rgba(148, 77, 18, 0.2),
@@ -321,9 +335,11 @@
     inset 0 1px 1px rgba(255, 255, 255, 0.25),
     inset 0 8px 6px rgba(255, 255, 255, 0.2);
 }
+
 .keypad-btn-black {
   background-color: #181818;
 }
+
 .keypad-btn-orange {
   background-color: #ff7113;
   box-shadow: inset 0 -13px 1px rgba(148, 77, 18, 0.2),
@@ -359,6 +375,7 @@
   background: -ms-linear-gradient(top, #141414 45%, #282828 80%);                                                    /* IE10+ */
   background: linear-gradient(to bottom, #141414 45%, #282828 80%);                                                  /* W3C */
 }
+
 .controls-container:after {
   content: "";
   display: block;
@@ -385,6 +402,7 @@
   background: -ms-linear-gradient(top, #141414 45%, #282828 80%);                                                    /* IE10+ */
   background: linear-gradient(to bottom, #141414 45%, #282828 80%);                                                  /* W3C */
 }
+
 .radio-controls-container:after {
   content: "";
   display: block;
@@ -437,6 +455,7 @@
   background: -ms-linear-gradient(top, #141414 45%, #282828 80%);                                                    /* IE10+ */
   background: linear-gradient(to bottom, #141414 45%, #282828 80%);                                                  /* W3C */
 }
+
 .msg-controls-container:after {
   content: "";
   display: block;
@@ -444,7 +463,7 @@
 }
 
 
-/* -------- keypad -------- */
+/* -------- controls panel -------- */
 
 .controls-keypad {
   position: relative;
@@ -452,7 +471,7 @@
   width: 240px;
 }
 
-/* -------- keypad buttons -------- */
+/* -------- controls buttons -------- */
 
 .controls-keypad > div {
   margin: 5px 4px;
@@ -511,6 +530,7 @@
   box-shadow: none;
   clear: right;
 }
+
 .controls-keypad .keypad-btn-brown > div {
   background-color: #635045;
 }
@@ -521,9 +541,11 @@
     inset 0 1px 1px rgba(255, 255, 255, 0.25),
     inset 0 8px 6px rgba(255, 255, 255, 0.2);
 }
+
 .controls-keypad .keypad-btn-black {
   background-color: #181818;
 }
+
 .controls-keypad .keypad-btn-orange > div {
   background-color: #ff7113;
   box-shadow: inset 0 -13px 1px rgba(148, 77, 18, 0.2),
@@ -544,71 +566,6 @@
 }
 
 .controls-keypad {
-  box-shadow: 1px 1px rgb(220, 220, 240), -1px -1px rgb(220, 220, 240),
-    1px -1px rgb(220, 220, 240), -1px 1px rgb(220, 220, 240),
-    2px 2px 2px rgb(220, 220, 240), -2px -2px 2px rgb(220, 220, 240),
-    2px -2px 2px rgb(220, 220, 240), -2px 2px 2px rgb(220, 220, 240);
-  border-color: #333;
-}
-
-.controls-blank-container {
-  display: block;
-  width: 240px; /* only needed in Chrome extension */
-  height: 240px;
-  padding: 16px 10px 18px;
-  font: bold 15px/28px Arial, Helvetica, sans-serif;
-  border-radius: 12px;
-  box-shadow: inset 0px -38px 5px rgba(0, 0, 0, 0.8),
-    inset 0px 6px 4px rgba(255, 255, 255, 0.25),
-    inset 0px 2px 1px rgba(255, 255, 255, 0.25),
-    inset 3px 0px 3px rgba(255, 255, 255, 0.25),
-    inset -4px 0px 4px rgba(0, 0, 0, 0.75);
-  background: #141414; /* Old browsers */
-  background: -moz-linear-gradient(top, #141414 45%, #282828 80%);                                                   /* FF3.6+ */
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(45%, #141414), color-stop(80%, #282828));   /* Chrome,Safari4+ */
-  background: -webkit-linear-gradient(top,#141414 45%,#282828 80%);                                                  /* Chrome10+,Safari5.1+ */
-  background: -o-linear-gradient(top,#141414 45%,#282828 80%);                                                       /* Opera 11.10+ */
-  background: -ms-linear-gradient(top, #141414 45%, #282828 80%);                                                    /* IE10+ */
-  background: linear-gradient(to bottom, #141414 45%, #282828 80%);                                                  /* W3C */
-}
-.controls-blank-container:after {
-  content: "";
-  display: block;
-  clear: both;
-}
-
-/* -------- keypad -------- */
-
-.controls-blank-keypad {
-  position: relative;
-  float: left;
-  width: 240px;
-}
-
-/* -------- keypad buttons -------- */
-
-.controls-blank-keypad > div {
-  margin: 5px 4px;
-  position: relative;
-  width: 232px;
-  height: 232px;
-  border: 1px solid black;
-  box-shadow: 0 1px rgba(255, 255, 255, 0.1);
-  border-radius: 6px;
-  overflow: hidden;
-  float: left;
-  cursor: default;
-}
-
-.keypad-blank {
- background-color: #000;
-  background: black;
-  background-image: black;
-  box-shadow: none;
-  clear: right;
-}
-
-.controls-blank-keypad {
   box-shadow: 1px 1px rgb(220, 220, 240), -1px -1px rgb(220, 220, 240),
     1px -1px rgb(220, 220, 240), -1px 1px rgb(220, 220, 240),
     2px 2px 2px rgb(220, 220, 240), -2px -2px 2px rgb(220, 220, 240),
@@ -658,6 +615,7 @@
   background: linear-gradient(to bottom, #141414 45%, #282828 80%); /* W3C */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#141414', endColorstr='#282828',GradientType=0 ); /* IE6-9 */
 }
+
 .rx-container:after {
   content: "";
   display: block;
@@ -693,6 +651,7 @@
     pointer-events: none;
   }
 }
+
 .rx-window-pre {
   margin: 0;
 }
@@ -706,7 +665,7 @@
 
 .tx-container {
   display: block;
-  width: 664px; /* only needed in Chrome extension */
+  width: 664px;
   height: 84px;
   padding: 16px 10px 18px;
   font: bold 15px/28px Arial, Helvetica, sans-serif;
@@ -716,7 +675,7 @@
     inset 0px 2px 1px rgba(255, 255, 255, 0.25),
     inset 3px 0px 3px rgba(255, 255, 255, 0.25),
     inset -4px 0px 4px rgba(0, 0, 0, 0.75);
-  background: #141414; /* Old browsers */
+  background: #141414;                                               /* Old browsers */
   background: -moz-linear-gradient(top, #141414 45%, #282828 80%); /* FF3.6+ */
   background: -webkit-gradient(
     linear,
@@ -735,10 +694,11 @@
     #141414 45%,
     #282828 80%
   ); /* Opera 11.10+ */
-  background: -ms-linear-gradient(top, #141414 45%, #282828 80%); /* IE10+ */
-  background: linear-gradient(to bottom, #141414 45%, #282828 80%); /* W3C */
+  background: -ms-linear-gradient(top, #141414 45%, #282828 80%);                                                  /* IE10+ */
+  background: linear-gradient(to bottom, #141414 45%, #282828 80%);                                                /* W3C */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#141414', endColorstr='#282828',GradientType=0 ); /* IE6-9 */
 }
+
 .rx-container:after {
   content: "";
   display: block;
@@ -774,6 +734,7 @@
     pointer-events: none;
   }
 }
+
 .tx-window-pre {
   margin: 0;
 }

@@ -17,7 +17,7 @@ library
 
 ## Introduction
 
-This project started life as webUI development for another project I am working on, [HASviolet](httpCra$8rixEb5L8zd1s://github.com/hudsonvalleydigitalnetwork/hasviolet "HASviolet").
+This project started life as webUI development for another project I am working on, [HASviolet](https://github.com/hudsonvalleydigitalnetwork/hasviolet).
 In researching what approach I should take with front-end development for that project, I kept
 coming back to more having to enlist layers of programming and frameworks I thought were
 unnecessary overhead for the simplistic functionality the project would need.
@@ -34,8 +34,9 @@ relase it as its own project hear.
 ## About the Project
 
 This project is a simple web framework with working websocket server for building your own
-WebUI. Besides this README, all code has been heavily commmented for ease of reference of its
-functionality. The project is built with HTML5, CSS, Javascript, and Python 3.X.
+WebUI. It uses SSLv3, Secure Cookies and simple user/password auth. Besides this README, all
+code has been heavily commmented for ease of reference of its functionality. The project
+is built with HTML5, CSS, Javascript, and Python 3.X.
 
 ## Getting Started
 
@@ -48,34 +49,51 @@ Next clone the repo into your user directory
    ```
    pi@pi:~$ git clone https://github.com/joecupano/radiodash
    ```
+Familiarize yourself with the files and sub-directories, the README file sin each subdirectory
+and the comments within the files themselves.  
 
-## High-Level Overview
+## Overview
 
-After the repo has been cleaned, you will have the following files:
+After the repo has been cloned, you will have the following files:
 
    ```
-       radioDASH_INDEX.html
-   radioDASH_ws-server.py
-                   cfg > radioDASH.json
-                         radioDASH.crt
-                         radioDASH.key
-                   css > radioDASH_INDEX.css
-                    js > radioDASH_index.js
-                  msgs > radioDASH.msgs
-                static > favicon.ico
+     radioDASH_account.py                          User Account Generator tool
+       radioDASH_INDEX.html                        Dashboard HTML Page
+   radioDASH_ws-server.py                          Web Server (HTTPS and Websocket)
+     radioDASH-example.png                         Sample screen seen in this README.md
+                README.md                          What you are readin now
+                   cfg > radioDASH.json            Radio Config file in JSON format
+                         radioDASH.crt             SSL certificate (self-signed)
+                         radioDASH.key             SSL key 
+                         radioDASH.pwf             User Account Password file
+                   css > radioDASH_INDEX.css       Dashboard CSS page
+                         radioDASH_LOGIN.css       Login CSS Page
+                    js > radioDASH_index.js        Client-side Javascript
+                  msgs > radioDASH.msgs            Output file from radio process
+                static > favicon.ico               Browser Favicon
+                         radioDASH_LOGIN.html      LOGIN HTML Page
    ```
 
-Out of these files, the core functionality is with radioDASH-ws_server.py running and serving
-radioDASH.html (HTML), radioDASH.css (CSS), radioDASH.js (JS) from the directories they are
-stored with. 
+Setup the Webserver to run on start-up as non-root user. The webserver uses SSLv3/TLS only. 
+A untrusted self-signed certificate and server key are provided (radioDASH.crt and radioDASH.key) 
+but it is HIGHLY RECOMMENDED these be replaced withyour own trusted credentials. Know until
+you have done that you will see (harmless) iostream errors from STDOUT from the websocket server.
 
-The framework uses SSLv3/TLS only. A untrusted self-signed certificate and server key are
-provided (radioDASH.crt and radioDASH.key) but it is HIGHLY RECOMMENDED these be replaced with
-your own trusted credentials. Know until you have done that you will see (harmless) iostream
-errors from STDOUT from the websocket server.
+On start-up the webserver reads the radio config file (radioDASH.json) into memory. A scheduler
+runs every 111ms looking at the radioDASH.msgs file to see if it has changed. If it has changed
+the webserver will send a websocket message to any connected browsers sending the message in the
+file. This task is setup as a demo only of the scheduler and multiprocessing functionality for
+you to integrate with your radio devices/processes.
 
-Browsers always look for a favicon hence the inclusion of favicon.ico in the static folder so
-there are no unecessary errors to be distracted with.
+When a browser first connects to the webserver at https://<yourhostname>:8000 it is redirected to
+/login and the radioDASH_LOGON.HTML pages. The page will ask for a user and password that should
+already be in the cfg/radioDASH.pwf file. For testing purposes admin:admin, radio:radio, and 
+radiodash:radiodash are already loaded in the file. Be sure to use the user account generator
+tool (radioDASH_account.py) to create your own user:passwords and delete the existing ones.
+
+Once authenticated, a (secure) session cookie is created and the browser is redirected to
+the dashboard (radioDASH_INDEX.html) Browsers always look for a favicon hence the inclusion
+of favicon.ico in the static folder so there are no unecessary errors to be distracted with.
 
 ### Dashboard Layout (HTML and CSS)
 

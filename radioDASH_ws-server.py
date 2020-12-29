@@ -6,7 +6,7 @@
 #
 #       Ⓒ2020 Joe Cupano, NE2Z
 #
-#       RELEASE: 20201224-2100
+#       RELEASE: 20201228-2100
 #       LICENSE: GPLv2
 #
 #
@@ -16,6 +16,11 @@
 # IMPORT LIBRARIES
 #
 
+import argparse 
+import binascii
+import sys
+import hashlib
+import uuid
 import os
 import time
 import json
@@ -40,8 +45,14 @@ radioDASHRXLOCK = False                                                  # True 
 radioDASHTXLOCK = False                                                  # True = TX is running
 radioDASHfpath = ""                                                      # Path to files. Change when Pi
 radioDASHcfg = radioDASHfpath + "cfg/radioDASH.json"                     # Config file is in JSON format
-radioDASHmsgs = 'msgs/radioDASH.msgs'                                    # radio writes msgs received here       
+radioDASHmsgs = 'msgs/radioDASH.msgs'                                    # radio writes msgs received here   
+radioDASHpwf = radioDASHfpath + "cfg/radioDASH.pwf"                      # Password file  user:hashedpasswd
+stored_password = ""                                                     # hashedpassword stored in Password file
 
+
+#
+# CLASSES
+#
 
 class DASHini:
     def __init__(self):
@@ -69,10 +80,30 @@ class DASHsess:
         self.wsCmd = "NULL"                     # Command (CMD) parsed
         self.wsOpr = "NULL"                     # Operator (OPR) aka message parsed   
 
-class IndexHandler(tornado.web.RequestHandler):
+class BaseHandler(tornado.web.RequestHandler):
+    def get_current_user(self):
+        return self.get_secure_cookie("radioDASHuser")
+
+class MainHandler(BaseHandler):
+    @tornado.web.authenticated
     def get(self):
         self.render('radioDASH_INDEX.html')
- 
+
+class LoginHandler(BaseHandler):
+    def get(self):
+        self.render('static/radioDASH_LOGIN.html')
+
+    def post(self):
+        fusername = self.get_argument("fusername")
+        fpassword = self.get_argument("fpassword")
+        if find_user(fusername) == "":
+            self.redirect("/login")
+        stored_password = find_password(fusername)
+        verdict = verify_password(stored_password, fpassword)
+        if verdict == True:
+            self.set_secure_cookie("radioDASHuser", str(uuid.uuid4()), secure=True, expires_days=1)
+            self.redirect("/")
+
 class WebSocketHandler(tornado.websocket.WebSocketHandler):
     def open(self):
         print ('WS: new client connection')
@@ -146,22 +177,64 @@ class WebSocketHandler(tornado.websocket.WebSocketHandler):
  
 
 #
+# GLOBAL FUNCTIONS
+#
+
+def verify_password(stored_password, provided_password):
+    """Verify a stored password against one provided by username"""
+    salt = stored_password[:64]
+    stored_password = stored_password[64:]
+    pwdhash = hashlib.pbkdf2_hmac('sha512', provided_password.encode('utf-8'), salt.encode('ascii'), 100000)
+    pwdhash = binascii.hexlify(pwdhash).decode('ascii')
+    return pwdhash == stored_password
+
+def find_user(user):
+    userfound=""
+    f = open(radioDASHpwf, "r")
+    flines = f.readlines()
+    for fl in flines:
+        fluser = fl.split(":")
+        if user == fluser[0]:
+            userfound = fluser[0]
+    f.close()
+    return (userfound)
+
+def find_password(user):
+    userpassword = ""
+    f = open(radioDASHpwf, "r")
+    flines = f.readlines()
+    for fl in flines:
+        fluser = fl.split(":")
+        if user == fluser[0]:
+            userpassword = (fluser[1]).rstrip()
+    f.close()
+    return (userpassword)
+
+
+#
 # MAIN
 #
  
 def main():
  
     tornado.options.parse_command_line()
+
+    settings = {
+        "cookie_secret":"gWsdN18jkIWNmksfh2poINsJxZZ83Vo=",
+        "login_url": "/login",
+    }
+
     app = tornado.web.Application(
         handlers=[
             ('/wss', WebSocketHandler),
-            ('/', IndexHandler),
+            ('/', MainHandler),
+            ('/login', LoginHandler),
             ('/css/(.*)', tornado.web.StaticFileHandler, {'path': 'css/'}),
             ('/js/(.*)', tornado.web.StaticFileHandler, {'path': 'js/'}),
             ('/cfg/(.*)', tornado.web.StaticFileHandler, {'path': 'cfg/'}),
             ('/msgs/(.*)', tornado.web.StaticFileHandler, {'path': 'msgs/'}),
             ('/(.*)', tornado.web.StaticFileHandler, {'path': 'static/'})
-        ]
+        ], **settings
     )
     httpServer = tornado.httpserver.HTTPServer(app,
         ssl_options = {
