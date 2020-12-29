@@ -5,7 +5,7 @@
 #
 # DESCRIPTION
 #
-#     This is a systemd service that runs radioDASH_ws-server.py on startup.
+#     This is a systemd service file used for radioDASH_ws-server.py on startup.
 #
 #
 # STOP THE SERVICE

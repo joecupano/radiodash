@@ -3,6 +3,24 @@
 # radioDASH.sh
 #
 # 202001229-1200
+#
+# DESCRIPTION
+#
+#     This is a shell script that runs radioDASH_ws-server.py on startup.
+#
+#
+# STOP THE SERVICE
+#
+#     ./radioDASH.sh stop
+#
+# START THE SERVICE
+#
+#     ./radioDASH.sh start
+#
+# REMOVE THE SERVICE
+#
+#     ./radioDASH.sh remove
+#
 
 
 case $1 in
