@@ -12,36 +12,38 @@
 
 A web framework for Amateur Radio applications that uses HTML, CSS and Javascript for
 the client front-end and Python for the back-end. The front-end is pure Javascript
-using no frameworks while the Python back-end only uses the Tornado Python web framework
+using no frameworks while the Python back-end uses the Tornado Python web framework
 library
 
 ## Introduction
 
 This project started life as webUI development for another project I am working on, [HASviolet](https://github.com/hudsonvalleydigitalnetwork/hasviolet).
 In researching what approach I should take with front-end development for that project, I kept
-coming back to more having to enlist layers of programming and frameworks I thought were
+coming back to being directed to enlist layers of programming and frameworks I thought were
 unnecessary overhead for the simplistic functionality the project would need.
 
 When I searched on what other Amateur Radio projects have done, I kept encountering projects
-that used the frameworks I was avoiding but were prpbably necessary for the breadth of
+that used the frameworks I was avoiding but probably necessary for the breadth of
 functionality those projrects delivered.
 
-I figured there are other Amateurs who have had the same quest in sinking something simple
-they could quickly understand and implement requirement the least number of programming
-skills possible. Hence I extracted the WebUI development from HASviolet and decided to
-relase it as its own project hear.
+I figured there are other Amateurs who have the same quest in searching for something simple
+they could quickly understand and implement with the least number of programming
+skillsets required. Hence I extracted the WebUI development from HASviolet and decided to
+release it as its own project here.
 
 ## About the Project
 
 This project is a simple web framework with working websocket server for building your own
-WebUI. It uses SSLv3, Secure Cookies and simple user/password auth. Besides this README, all
-code has been heavily commmented for ease of reference of its functionality. The project
-is built with HTML5, CSS, Javascript, and Python 3.X.
+WebUI. The project is built with HTML5, CSS, Javascript, and Python 3.X. For security it
+uses TLS 1.3, secure session cookies, and simple user/password auth. Besides this
+README and README files within each folder, all code has been heavily commmented for ease of
+reference of its functionality.
 
 ## Getting Started
 
-Run a Linux a machine a your server back-end. With Python 3 and the PIP3 Python Package
-installer installed, add the Tornado WebFramework Library
+Run a Linux a machine as your server back-end and create a non-root user account for
+the server to run as. With Python 3 and the PIP3 Python Package installer installed, add
+the Tornado WebFramework Library
    ```
    sudo pip3 install tornado
    ```
@@ -49,17 +51,22 @@ Next clone the repo into your user directory
    ```
    pi@pi:~$ git clone https://github.com/joecupano/radiodash
    ```
-Familiarize yourself with the files and sub-directories, the README file sin each subdirectory
-and the comments within the files themselves.  
+Familiarize yourself with the files and sub-directories cloned. Start with the README
+files in each subdirectory and then the comments within the files themselves.  
 
-## Overview
+## Functionality
 
-After the repo has been cloned, you will have the following files:
+After the repo has been cloned into your user directory, you will have the following
+files/directories installed.
 
    ```
-     radioDASH_account.py                          User Account Generator tool
+           ~/radiodash
+
        radioDASH_INDEX.html                        Dashboard HTML Page
+     radioDASH_account.py                          User Account Generator tool
    radioDASH_ws-server.py                          Web Server (HTTPS and Websocket)
+             radioDASH.sh                          Example shells script for run-on-startup
+             radioDASH.service                     Example service file for SystemD startup
      radioDASH-example.png                         Sample screen seen in this README.md
                 README.md                          What you are readin now
                    cfg > radioDASH.json            Radio Config file in JSON format
@@ -74,22 +81,29 @@ After the repo has been cloned, you will have the following files:
                          radioDASH_LOGIN.html      LOGIN HTML Page
    ```
 
-Setup the Webserver to run on start-up as non-root user. The webserver uses SSLv3/TLS only. 
-A untrusted self-signed certificate and server key are provided (radioDASH.crt and radioDASH.key) 
-but it is HIGHLY RECOMMENDED these be replaced withyour own trusted credentials. Know until
-you have done that you will see (harmless) iostream errors from STDOUT from the websocket server.
+Setup the Webserver to run on start-up as the non-root user you created. A shell script and
+service file for systemd installation are included (radioDASH.sh and radioDASH.service)
+
+The server only supports HTTPS with TLSv1.3. An untrusted self-signed certificate and server
+key are provided (radioDASH.crt and radioDASH.key) but it is HIGHLY RECOMMENDED these be replaced
+with your own trusted credentials. Know until you have done that you will see (harmless) iostream
+errors from STDOUT from the websocket server.
 
 On start-up the webserver reads the radio config file (radioDASH.json) into memory. A scheduler
-runs every 111ms looking at the radioDASH.msgs file to see if it has changed. If it has changed
-the webserver will send a websocket message to any connected browsers sending the message in the
-file. This task is setup as a demo only of the scheduler and multiprocessing functionality for
-you to integrate with your radio devices/processes.
+runs every 111ms looking at the radioDASH.msgs file to see if it has changed. If the timestamp
+of the file has changed (indicating the file wa supdated) the webserver will send a websocket
+message to any connected browsers sending the message in the file. This task is setup as a demo
+only of the scheduler and multiprocessing functionality for you to integrate with your
+own radio devices/processes.
+
+### First connection
 
 When a browser first connects to the webserver at https://<yourhostname>:8000 it is redirected to
-/login and the radioDASH_LOGON.HTML pages. The page will ask for a user and password that should
-already be in the cfg/radioDASH.pwf file. For testing purposes admin:admin, radio:radio, and 
-radiodash:radiodash are already loaded in the file. Be sure to use the user account generator
-tool (radioDASH_account.py) to create your own user:passwords and delete the existing ones.
+/login where static/radioDASH_LOGON.HTML and its associated CSS (css/radioDASH_LOGON.css) pages
+are loaded. The page will ask for a user and password that should already be in the cfg/radioDASH.pwf
+file. For testing purposes radio:radio and radiodash:radiodash are already loaded in the file. 
+Be sure to use the user account generator tool (radioDASH_account.py) to create your own user:passwords
+and delete the existing ones.
 
 Once authenticated, a (secure) session cookie is created and the browser is redirected to
 the dashboard (radioDASH_INDEX.html) Browsers always look for a favicon hence the inclusion
